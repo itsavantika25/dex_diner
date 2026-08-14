@@ -1,0 +1,137 @@
+/* Board Section */
+
+.board-section {
+  background: #ece7da;
+  padding: 72px 30px 76px;
+  border-bottom: 1px solid rgba(43, 43, 43, 0.75);
+}
+
+.board-heading-row {
+  max-width: 1480px;
+  margin: 0 auto 58px;
+}
+
+.board-title {
+  font-size: clamp(3.8rem, 7vw, 6.8rem);
+  color: #303030;
+  line-height: 0.85;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.notice-grid {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 36px;
+}
+
+.notice-card {
+  position: relative;
+  min-height: 43px;
+  padding: 17px 20px 10px;
+  background: transparent;
+
+  border: 1px solid rgba(43, 43, 43, 0.7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  text-align: center;
+  color: #2b2b2b;
+
+  cursor: default;
+
+  /* subtle imperfect paper placement */
+  transform: rotate(-0.7deg);
+
+  box-shadow: 4px 4px 0 rgba(43, 43, 43, 0.13);
+}
+
+.notice-card:nth-child(2),
+.notice-card:nth-child(5) {
+  transform: rotate(0.7deg);
+}
+
+.notice-card:nth-child(3),
+.notice-card:nth-child(6) {
+  transform: rotate(-0.45deg);
+}
+
+/* Pin */
+.notice-card i {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  transform: translateX(-50%);
+  border-radius: 50%;
+
+  background: #b8443c;
+
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.notice-card.blue i {
+  background: #202da6;
+}
+
+.notice-card.red i {
+  background: #b8443c;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .board-section {
+    padding: 60px 22px;
+  }
+
+  .notice-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .board-section {
+    padding: 50px 18px;
+  }
+
+  .board-heading-row {
+    margin-bottom: 42px;
+  }
+
+  .notice-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .notice-card {
+    min-height: 48px;
+    font-size: 9px;
+    padding: 18px 16px 11px;
+  }
+}
+
+
+.logo-wrapper {
+  width: clamp(100px, 18vw, 180px);
+}
+
+.site-logo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

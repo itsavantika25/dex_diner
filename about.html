@@ -321,12 +321,11 @@
   id="model-container"
   class="placeholder reveal mx-auto w-full max-w-[920px] aspect-[1.7/1] relative overflow-hidden"
 >
-  <div
-    id="model-loading"
-    class="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
-  >
-    <span class="font-mono text-sm opacity-60">LOADING...</span>
-  </div>
+
+<img
+  src="./public/diner.png"
+  alt="Dex's Diner interior"
+  class="absolute inset-0 w-full h-full object-cover">
 </div>
 
     </section>
@@ -371,7 +370,7 @@
   <div id="toast" class="fixed bottom-5 right-5 translate-y-24 opacity-0 transition-all duration-300 bg-ink text-paper border border-paper/30 px-5 py-4 text-sm z-[100]">
     Reservation noted. Probably.
   </div>
-<script type="module">
+<!-- <script type="module">
   import * as THREE from "three";
 
   import { FBXLoader } from
@@ -381,9 +380,6 @@
     "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
 
-  /* =========================================================
-     SETUP
-  ========================================================= */
 
   const container = document.getElementById("model-container");
   const loading = document.getElementById("model-loading");
@@ -394,16 +390,8 @@
   }
 
 
-  /* =========================================================
-     SCENE
-  ========================================================= */
-
   const scene = new THREE.Scene();
 
-
-  /* =========================================================
-     CAMERA
-  ========================================================= */
 
   const camera = new THREE.PerspectiveCamera(
     35,
@@ -414,10 +402,6 @@
 
   camera.position.set(0, 0.8, 5);
 
-
-  /* =========================================================
-     RENDERER
-  ========================================================= */
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -448,9 +432,6 @@
   container.appendChild(renderer.domElement);
 
 
-  /* =========================================================
-     LIGHTING
-  ========================================================= */
 
   const ambientLight = new THREE.AmbientLight(
     0xffffff,
@@ -483,9 +464,6 @@
   scene.add(rimLight);
 
 
-  /* =========================================================
-     CONTROLS
-  ========================================================= */
 
   const controls = new OrbitControls(
     camera,
@@ -510,9 +488,7 @@
   controls.autoRotateSpeed = 0.8;
 
 
-  /* =========================================================
-     LOAD + AUTO-FIT FBX
-  ========================================================= */
+
 
   const loader = new FBXLoader();
 
@@ -539,7 +515,7 @@
         }
       });
 
-      // Find the original dimensions and center.
+    
       const originalBox = new THREE.Box3().setFromObject(model);
       const originalSize = originalBox.getSize(new THREE.Vector3());
       const originalCenter = originalBox.getCenter(new THREE.Vector3());
@@ -551,10 +527,10 @@
         throw new Error("The FBX loaded, but it has no usable geometry.");
       }
 
-      // Center the model at the origin.
+   
       model.position.sub(originalCenter);
 
-      // Scale automatically so it fits nicely in the viewport.
+      
       const maxDimension = Math.max(
         originalSize.x,
         originalSize.y,
@@ -564,23 +540,23 @@
       const targetSize = 3.2;
       model.scale.setScalar(targetSize / maxDimension);
 
-      // Recalculate bounds after scaling and center again.
+ 
       let fittedBox = new THREE.Box3().setFromObject(model);
       const fittedCenter = fittedBox.getCenter(new THREE.Vector3());
       model.position.sub(fittedCenter);
 
-      // Put the bottom of the model around y = 0.
+   
       fittedBox = new THREE.Box3().setFromObject(model);
       model.position.y -= fittedBox.min.y;
 
       scene.add(model);
 
-      // Final bounds after all transformations.
+    
       fittedBox = new THREE.Box3().setFromObject(model);
       const fittedSize = fittedBox.getSize(new THREE.Vector3());
       const modelHeight = Math.max(fittedSize.y, 0.1);
 
-      // Automatically position camera based on model size.
+     
       const verticalFov = THREE.MathUtils.degToRad(camera.fov);
       const cameraDistance =
         (modelHeight / (2 * Math.tan(verticalFov / 2))) * 1.25;
@@ -638,9 +614,7 @@
   );
 
 
-  /* =========================================================
-     RESPONSIVE
-  ========================================================= */
+
 
   function resizeRenderer() {
     const width = container.clientWidth;
@@ -658,9 +632,7 @@
   resizeRenderer();
 
 
-  /* =========================================================
-     ANIMATION LOOP
-  ========================================================= */
+
 
   function animate() {
     requestAnimationFrame(animate);
@@ -671,7 +643,7 @@
 
   animate();
 
-</script>
+</script> -->
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {

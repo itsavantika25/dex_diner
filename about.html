@@ -89,8 +89,6 @@
   font-weight: 800;
   letter-spacing: .025em;
   line-height: .9;
-
-  /* Makes Bebas Neue appear bolder */
   -webkit-text-stroke: 0.5px currentColor;
 }
 
@@ -321,12 +319,7 @@
   id="model-container"
   class="placeholder reveal mx-auto w-full max-w-[920px] aspect-[1.7/1] relative overflow-hidden"
 >
-
-<img
-  src="./public/diner.png"
-  alt="Dex's Diner interior"
-  class="absolute inset-0 w-full h-full object-cover">
-</div>
+<img src="./public/diner.png" alt="Dex's Diner interior" class="absolute inset-0 w-full h-full object-cover"> </div>
 
     </section>
 
@@ -370,7 +363,7 @@
   <div id="toast" class="fixed bottom-5 right-5 translate-y-24 opacity-0 transition-all duration-300 bg-ink text-paper border border-paper/30 px-5 py-4 text-sm z-[100]">
     Reservation noted. Probably.
   </div>
-<!-- <script type="module">
+<script type="module">
   import * as THREE from "three";
 
   import { FBXLoader } from
@@ -378,9 +371,6 @@
 
   import { OrbitControls } from
     "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
-
-
-
   const container = document.getElementById("model-container");
   const loading = document.getElementById("model-loading");
 
@@ -388,11 +378,7 @@
     console.error("3D model container not found.");
     throw new Error("Missing #model-container");
   }
-
-
   const scene = new THREE.Scene();
-
-
   const camera = new THREE.PerspectiveCamera(
     35,
     container.clientWidth / container.clientHeight,
@@ -401,8 +387,6 @@
   );
 
   camera.position.set(0, 0.8, 5);
-
-
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
@@ -430,9 +414,6 @@
   renderer.domElement.style.inset = "0";
 
   container.appendChild(renderer.domElement);
-
-
-
   const ambientLight = new THREE.AmbientLight(
     0xffffff,
     1.8
@@ -462,9 +443,6 @@
   );
   rimLight.position.set(0, 4, -5);
   scene.add(rimLight);
-
-
-
   const controls = new OrbitControls(
     camera,
     renderer.domElement
@@ -486,23 +464,15 @@
 
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.8;
-
-
-
-
   const loader = new FBXLoader();
-
   loader.load(
-    "./public/thing.fbx",
-
+    "/thing.fbx",
     (model) => {
       console.log("FBX loaded successfully.", model);
-
       model.traverse((child) => {
         if (child.isMesh) {
           child.castShadow = true;
           child.receiveShadow = true;
-
           if (child.material) {
             if (Array.isArray(child.material)) {
               child.material.forEach((material) => {
@@ -515,7 +485,6 @@
         }
       });
 
-    
       const originalBox = new THREE.Box3().setFromObject(model);
       const originalSize = originalBox.getSize(new THREE.Vector3());
       const originalCenter = originalBox.getCenter(new THREE.Vector3());
@@ -526,11 +495,7 @@
           originalSize.length() === 0) {
         throw new Error("The FBX loaded, but it has no usable geometry.");
       }
-
-   
       model.position.sub(originalCenter);
-
-      
       const maxDimension = Math.max(
         originalSize.x,
         originalSize.y,
@@ -539,24 +504,16 @@
 
       const targetSize = 3.2;
       model.scale.setScalar(targetSize / maxDimension);
-
- 
       let fittedBox = new THREE.Box3().setFromObject(model);
       const fittedCenter = fittedBox.getCenter(new THREE.Vector3());
       model.position.sub(fittedCenter);
-
-   
       fittedBox = new THREE.Box3().setFromObject(model);
       model.position.y -= fittedBox.min.y;
 
       scene.add(model);
-
-    
       fittedBox = new THREE.Box3().setFromObject(model);
       const fittedSize = fittedBox.getSize(new THREE.Vector3());
       const modelHeight = Math.max(fittedSize.y, 0.1);
-
-     
       const verticalFov = THREE.MathUtils.degToRad(camera.fov);
       const cameraDistance =
         (modelHeight / (2 * Math.tan(verticalFov / 2))) * 1.25;
@@ -612,10 +569,6 @@
       }
     }
   );
-
-
-
-
   function resizeRenderer() {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -630,10 +583,6 @@
 
   window.addEventListener("resize", resizeRenderer);
   resizeRenderer();
-
-
-
-
   function animate() {
     requestAnimationFrame(animate);
 
@@ -643,17 +592,14 @@
 
   animate();
 
-</script> -->
+</script>
   <script>
-    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Animated counters
     function animateCounter(el, target) {
       if (el.dataset.done) return;
       el.dataset.done = 'true';
@@ -680,8 +626,6 @@
       });
     }, { threshold: 0.5 });
     stats.forEach(stat => statObserver.observe(stat));
-
-    // Active navigation
     const sections = document.querySelectorAll('main section[id]');
     const links = document.querySelectorAll('.nav-link');
     const sectionObserver = new IntersectionObserver(entries => {

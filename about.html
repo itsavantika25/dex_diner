@@ -89,8 +89,6 @@
   font-weight: 800;
   letter-spacing: .025em;
   line-height: .9;
-
-  /* Makes Bebas Neue appear bolder */
   -webkit-text-stroke: 0.5px currentColor;
 }
 
@@ -379,12 +377,6 @@
 
   import { OrbitControls } from
     "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
-
-
-  /* =========================================================
-     SETUP
-  ========================================================= */
-
   const container = document.getElementById("model-container");
   const loading = document.getElementById("model-loading");
 
@@ -392,19 +384,7 @@
     console.error("3D model container not found.");
     throw new Error("Missing #model-container");
   }
-
-
-  /* =========================================================
-     SCENE
-  ========================================================= */
-
   const scene = new THREE.Scene();
-
-
-  /* =========================================================
-     CAMERA
-  ========================================================= */
-
   const camera = new THREE.PerspectiveCamera(
     35,
     container.clientWidth / container.clientHeight,
@@ -413,12 +393,6 @@
   );
 
   camera.position.set(0, 0.8, 5);
-
-
-  /* =========================================================
-     RENDERER
-  ========================================================= */
-
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
@@ -446,12 +420,6 @@
   renderer.domElement.style.inset = "0";
 
   container.appendChild(renderer.domElement);
-
-
-  /* =========================================================
-     LIGHTING
-  ========================================================= */
-
   const ambientLight = new THREE.AmbientLight(
     0xffffff,
     1.8
@@ -481,12 +449,6 @@
   );
   rimLight.position.set(0, 4, -5);
   scene.add(rimLight);
-
-
-  /* =========================================================
-     CONTROLS
-  ========================================================= */
-
   const controls = new OrbitControls(
     camera,
     renderer.domElement
@@ -508,25 +470,15 @@
 
   controls.autoRotate = true;
   controls.autoRotateSpeed = 0.8;
-
-
-  /* =========================================================
-     LOAD + AUTO-FIT FBX
-  ========================================================= */
-
   const loader = new FBXLoader();
-
   loader.load(
-    "./public/thing.fbx",
-
+    "/thing.fbx",
     (model) => {
       console.log("FBX loaded successfully.", model);
-
       model.traverse((child) => {
         if (child.isMesh) {
           child.castShadow = true;
           child.receiveShadow = true;
-
           if (child.material) {
             if (Array.isArray(child.material)) {
               child.material.forEach((material) => {
@@ -539,7 +491,6 @@
         }
       });
 
-      // Find the original dimensions and center.
       const originalBox = new THREE.Box3().setFromObject(model);
       const originalSize = originalBox.getSize(new THREE.Vector3());
       const originalCenter = originalBox.getCenter(new THREE.Vector3());
@@ -550,11 +501,7 @@
           originalSize.length() === 0) {
         throw new Error("The FBX loaded, but it has no usable geometry.");
       }
-
-      // Center the model at the origin.
       model.position.sub(originalCenter);
-
-      // Scale automatically so it fits nicely in the viewport.
       const maxDimension = Math.max(
         originalSize.x,
         originalSize.y,
@@ -563,24 +510,16 @@
 
       const targetSize = 3.2;
       model.scale.setScalar(targetSize / maxDimension);
-
-      // Recalculate bounds after scaling and center again.
       let fittedBox = new THREE.Box3().setFromObject(model);
       const fittedCenter = fittedBox.getCenter(new THREE.Vector3());
       model.position.sub(fittedCenter);
-
-      // Put the bottom of the model around y = 0.
       fittedBox = new THREE.Box3().setFromObject(model);
       model.position.y -= fittedBox.min.y;
 
       scene.add(model);
-
-      // Final bounds after all transformations.
       fittedBox = new THREE.Box3().setFromObject(model);
       const fittedSize = fittedBox.getSize(new THREE.Vector3());
       const modelHeight = Math.max(fittedSize.y, 0.1);
-
-      // Automatically position camera based on model size.
       const verticalFov = THREE.MathUtils.degToRad(camera.fov);
       const cameraDistance =
         (modelHeight / (2 * Math.tan(verticalFov / 2))) * 1.25;
@@ -636,12 +575,6 @@
       }
     }
   );
-
-
-  /* =========================================================
-     RESPONSIVE
-  ========================================================= */
-
   function resizeRenderer() {
     const width = container.clientWidth;
     const height = container.clientHeight;
@@ -656,12 +589,6 @@
 
   window.addEventListener("resize", resizeRenderer);
   resizeRenderer();
-
-
-  /* =========================================================
-     ANIMATION LOOP
-  ========================================================= */
-
   function animate() {
     requestAnimationFrame(animate);
 
@@ -673,15 +600,12 @@
 
 </script>
   <script>
-    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Animated counters
     function animateCounter(el, target) {
       if (el.dataset.done) return;
       el.dataset.done = 'true';
@@ -708,8 +632,6 @@
       });
     }, { threshold: 0.5 });
     stats.forEach(stat => statObserver.observe(stat));
-
-    // Active navigation
     const sections = document.querySelectorAll('main section[id]');
     const links = document.querySelectorAll('.nav-link');
     const sectionObserver = new IntersectionObserver(entries => {

@@ -807,16 +807,15 @@
         transform: translateX(2px);
       }
 
-      /* no white hover states anywhere on menu items */
+
       .menu-item:hover,
       .menu-item:focus-visible,
       .menu-item:active {
         background: transparent !important;
       }
 
-      /* =========================================================
-         MENU — REFERENCE IMAGE MATCH
-         ========================================================= */
+     
+
 
       .menu-page {
         min-height: 0 !important;
@@ -824,7 +823,7 @@
         background: #ece7da !important;
       }
 
-      /* The reference starts directly with the 3 x 2 menu grid. */
+
       .menu-top {
         display: none !important;
       }
@@ -953,7 +952,6 @@
         vertical-align: baseline !important;
       }
 
-      /* Hover marker: every menu item gets the same red star. */
       .menu-item::before {
         content: "★" !important;
         position: absolute !important;
@@ -973,12 +971,12 @@
           transform .18s ease !important;
       }
 
-      /* No blue block / white hover state. */
+      
       .menu-item::after {
         display: none !important;
       }
 
-      /* Every item gets the same left movement + star on hover. */
+
       .menu-item:hover,
       .menu-item:focus-visible {
         background: transparent !important;
@@ -1342,13 +1340,17 @@
             </p>
           </div>
           <div>
-            <div class="special-carousel" aria-label="Dex's Specials carousel">
+               <div class="special-carousel" aria-label="Dex's Specials carousel">
               <div class="special-track" id="specialTrack">
-                <div class="special-slide">PHOTON FIZZLE</div>
-                <div class="special-slide">MASHED TATERS</div>
-                <div class="special-slide">BLUE MILK</div>
-                <div class="special-slide">GALACTIC PIE</div>
-              </div>
+                <div class="special-slide">
+                  <img src="/public/drink.png" alt="Photon Fizzle" />
+                </div>
+                <div class="special-slide">
+                  <img src="/public/pie.png" alt="Mashed Taters" />
+                </div>
+                <div class="special-slide">
+                  <img src="/public/icecream.png" alt="Blue Milk" />
+                </div>
             </div>
             <div class="special-caption">
               <span class="dish-name" id="dishName">PHOTON FIZZLE</span>
@@ -1368,11 +1370,7 @@
                   data-special="2"
                   aria-label="Show Blue Milk"
                 ></button
-                ><button
-                  class="special-dot"
-                  data-special="3"
-                  aria-label="Show Galactic Pie"
-                ></button>
+                >
               </div>
             </div>
           </div>
@@ -1493,10 +1491,6 @@
         [
           "BLUE MILK",
           "Sweet, smooth and the perfect treat for a hot Coruscant afternoon. Don't ask Dex where he gets the good stuff.",
-        ],
-        [
-          "GALACTIC PIE",
-          "A rotating house dessert with a flaky crust, strange filling and absolutely no questions asked.",
         ],
       ];
       let currentSpecial = 0;
